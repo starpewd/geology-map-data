@@ -36,6 +36,25 @@
       "source": "Česká geologická služba",
       "license": "CC BY 4.0",
       "files": []
+    },
+    {
+      "id": "test",
+      "name": "Test map",
+      "description": "Test dataset for offline map installation",
+      "kind": "test",
+      "version": "2026-09-25",
+      "available": true,
+      "sizeBytes": 1048576,
+      "source": "Geology Map project",
+      "license": "Project test data",
+      "files": [
+        {
+          "name": "test-map.bin",
+          "url": "https://raw.githubusercontent.com/starpewd/geology-map-data/main/test/test-map.bin",
+          "sizeBytes": 1048576,
+          "sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83"
+        }
+      ]
     }
   ]
 }
