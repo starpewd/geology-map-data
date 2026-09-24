@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "datasets": [
+    {
+      "id": "world",
+      "name": "World",
+      "description": "Basic OpenStreetMap base map",
+      "kind": "basemap",
+      "version": "",
+      "available": false,
+      "sizeBytes": 0,
+      "source": "OpenStreetMap / Protomaps",
+      "license": "ODbL",
+      "files": []
+    },
+    {
+      "id": "czechia",
+      "name": "Czechia",
+      "description": "Detailed OpenStreetMap base map of Czechia",
+      "kind": "basemap",
+      "version": "",
+      "available": false,
+      "sizeBytes": 0,
+      "source": "OpenStreetMap / Protomaps",
+      "license": "ODbL",
+      "files": []
+    },
+    {
+      "id": "geocr50",
+      "name": "GEOČR50",
+      "description": "Geological map of Czechia · 1:50,000",
+      "kind": "geology",
+      "version": "",
+      "available": false,
+      "sizeBytes": 0,
+      "source": "Česká geologická služba",
+      "license": "CC BY 4.0",
+      "files": []
+    }
+  ]
+}
