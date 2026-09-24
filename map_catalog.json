@@ -39,20 +39,20 @@
     },
     {
       "id": "test",
-      "name": "Test map",
-      "description": "Test dataset for offline map installation",
+      "name": "PMTiles test",
+      "description": "Test vector map for local PMTiles rendering",
       "kind": "test",
-      "version": "2026-09-26",
+      "version": "2026-09-25-pmtiles",
       "available": true,
-      "sizeBytes": 1048576,
+      "sizeBytes": 6182,
       "source": "Geology Map project",
       "license": "Project test data",
       "files": [
         {
-          "name": "test-map.bin",
-          "url": "https://raw.githubusercontent.com/starpewd/geology-map-data/main/test/test-map.bin",
-          "sizeBytes": 1048576,
-          "sha256": "18af9b054114c04a1eb836533a3e760dfa9dc53934ecb02fc059ff27150e77fb"
+          "name": "test-map.pmtiles",
+          "url": "https://raw.githubusercontent.com/starpewd/geology-map-data/main/test/test-map.pmtiles",
+          "sizeBytes": 6182,
+          "sha256": "6a0769d2ed337152505a13cde7440c1b6629f1d8930cad77f6356833243eed0c"
         }
       ]
     }
