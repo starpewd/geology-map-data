@@ -27,13 +27,13 @@
     },
     {
       "id": "geocr50",
-      "name": "GEOČR50",
-      "description": "Geological map of Czechia · 1:50,000",
+      "name": "GEO\u010cR50",
+      "description": "Geological map of Czechia \u00b7 1:50,000",
       "kind": "geology",
       "version": "",
       "available": false,
       "sizeBytes": 0,
-      "source": "Česká geologická služba",
+      "source": "\u010cesk\u00e1 geologick\u00e1 slu\u017eba",
       "license": "CC BY 4.0",
       "files": []
     },
