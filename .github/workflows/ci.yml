@@ -1,0 +1,39 @@
+name: Dataset Repository CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dataset-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-catalog:
+    name: Validate catalogue and local assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out dataset repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v7.1.0
+        with:
+          python-version: "3.13"
+
+      - name: Validate catalogue JSON syntax
+        run: python3 -m json.tool map_catalog.json > /dev/null
+
+      - name: Validate validator Python syntax
+        run: python3 -m py_compile scripts/validate_catalog.py
+
+      - name: Validate catalogue and local asset sizes and SHA-256 hashes
+        run: python3 scripts/validate_catalog.py
