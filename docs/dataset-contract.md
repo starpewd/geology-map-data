@@ -61,3 +61,27 @@ HTTPS URL/size/hash, set the total size, record attribution and licence terms,
 and add compatibility or format metadata only when applicable. Run the
 validator before publishing. Do not publish transformed third-party data until
 redistribution rights are established.
+
+## CI and local validation
+
+`Dataset Repository CI` runs on pull requests targeting `main`, pushes to
+`main`, and manual dispatch. It validates JSON syntax, Python syntax for the
+validator, then runs `python3 scripts/validate_catalog.py`. The validator checks
+the catalogue and locally available repository-hosted assets against declared
+sizes and SHA-256 hashes. The workflow does not download production datasets.
+Inspect run logs from the repository's **Actions** tab; pull request runs are
+also linked under **Checks**.
+
+Run the same checks locally from the data repository root:
+
+```sh
+python3 -m json.tool map_catalog.json > /dev/null
+python3 -m py_compile scripts/validate_catalog.py
+python3 scripts/validate_catalog.py
+```
+
+The app has a separate workflow and repository history. Merging a data change
+does not trigger application CI. To rerun app integration against the current
+data `main`, open **Actions** in `geology-map`, select **Application CI**, choose
+**Run workflow** on branch `main`, and start it. The application workflow
+checks out the current public data `main` without credentials.
