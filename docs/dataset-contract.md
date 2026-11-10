@@ -32,10 +32,14 @@ to redistribute. `compatibility` and `metadata` are optional JSON objects for
 constraints and type-specific format details (for example a PMTiles format
 version). Known `appMinVersion` and `appMaxVersion` values use stable
 `major.minor.patch` versions without prerelease/build suffixes, and the minimum
-cannot exceed the maximum. The app validates their format and order but does
-not compare them to its own version. Add optional keys rather than duplicating
-the common contract; producers must document additional keys and consumers
-must add explicit checks before relying on them.
+cannot exceed the maximum. The app obtains its installed application version
+from `PackageInfo.version` at installation time and compares numeric stable
+`major.minor.patch` components. Bounds are inclusive, and omitted bounds impose
+no constraint. A bounded dataset is rejected before filesystem or download
+side effects when the app version is outside its bounds or cannot be retrieved.
+Add optional keys rather than duplicating the common contract; producers must
+document additional keys and consumers must add explicit checks before relying
+on them.
 
 An available dataset version identifies immutable content. If any file bytes,
 metadata that affects interpretation, or file list changes, publish a new
