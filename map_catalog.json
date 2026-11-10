@@ -47,9 +47,6 @@
       "sizeBytes": 6182,
       "source": "Geology Map project",
       "license": "Project test data",
-      "compatibility": {
-        "appMinVersion": "1.0.0"
-      },
       "metadata": {
         "format": "pmtiles",
         "formatVersion": 3
