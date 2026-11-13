@@ -37,7 +37,7 @@ planetiler_build=$(printf '%s\n' "$version_output" | sed -n 's/.*Planetiler buil
 podman run --rm --userns=keep-id -v "$input_abs:/input/czechia.osm.pbf:ro" \
   -v "$auxiliary_abs:/aux:ro" -v "$tmp_abs:/work:rw" \
   "$image" --osm_path=/input/czechia.osm.pbf --output=/work/czechia.mbtiles \
-  --natural_earth_path=/aux/natural_earth \
+  --natural_earth_path=/aux/source-archives/natural_earth \
   --lake_centerlines_path=/aux/lake_centerline.parquet \
   --water_polygons_path=/aux/water_polygons.parquet \
   --download_natural_earth=false --download_lake_centerlines=false --download_water_polygons=false \

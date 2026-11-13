@@ -105,9 +105,11 @@ expected file and provenance record, including the Planetiler image identity,
 source URL/path, retrieval timestamp, size, and SHA-256. It mounts the auxiliary
 directory read-only and passes `--download=false` plus the source-specific
 download switches as `false`. Missing or changed inputs stop the build. The
-required mounted paths are `natural_earth/`, `lake_centerline.parquet`, and
-`water_polygons.parquet`; the OSM PBF remains a separately supplied local
-input.
+profile reads its 22 Natural Earth ZIP archives from
+`source-archives/natural_earth/`; their extracted shapefiles are retained in
+`natural_earth/` for inspection and provenance. The other required mounted
+paths are `lake_centerline.parquet` and `water_polygons.parquet`; the OSM PBF
+remains a separately supplied local input.
 
 The image reports the Parquet inputs at
 `https://planetiler.onthegomap.com/lake_centerline.parquet` and
@@ -205,6 +207,29 @@ custom PMTiles protocol registration is required.
 This OpenMapTiles-derived cartography is a practical OSM Carto-like starting
 point, not pixel-identical OSM Carto. Symbol placement, tags, fonts, and
 rendering engines differ.
+
+### Project Liberty style variant (16 OpenMapTiles layers)
+
+The project maintains an extended variant of the MapLibre Liberty style under
+`styles/liberty/` based on pinned upstream commit `006ea5796803ba2df4330888836cb0a8f17473b4`.
+Upstream Liberty utilizes 14 of the 16 vector layers present in OpenMapTiles 3.16.0
+extracts. The project variant adds rendering rules for the remaining 2 layers:
+
+1. **`mountain_peak`:**
+   - Peaks, hills, and spot heights (`class=peak`): warm dark brown labels (`#523d2e`, `Noto Sans Regular`) with `mountain_11` icon, sorted by `rank`. Shows `{name}\n{ele} m`, or `{ele} m` when unnamed (vital for field hypsometry).
+   - Volcanic summits (`class=volcano`): crimson-brown (`#7a1c1c`, `Noto Sans Bold`) with `volcano_11` icon.
+   - Saddles and cols (`class=saddle`): muted brown italic (`#5c4a3d`, `Noto Sans Italic`) with `dot_9` icon.
+   - Rocky cliffs and canyon rims (`class=cliff`): solid rocky umber lines (`#52463e`, z12.5+) and line-placement labels (`mountain_peak_line_label`, z13.5+) for named rock faces (e.g. Býčí skála, Macocha, Stránská skála).
+   - Ridges and aretes (`class=ridge`, `class=arete`): dashed orographic crest lines (`#736357` / `#4a3b32`, z12+).
+2. **`housenumber`:**
+   - Displayed strictly at high zooms (z17+) to prevent cluttering urban areas.
+   - Styled in subdued grey (`#777777`, 8.5–10.5 px, `Noto Sans Regular`) with `symbol-sort-key: 1000`, `text-allow-overlap: false`, and `text-optional: true` so house numbers yield placement priority to street names and POIs.
+
+All original 111 layers from upstream commit `006ea5796803ba2df4330888836cb0a8f17473b4`
+are strictly preserved. The identical 118-layer cartography serves both online
+OpenFreeMap (`styles/liberty/style-online.json`) and offline PMTiles archives
+(`styles/liberty/style.template.json`). Regression tests are located in
+`tests/test_liberty_style.py`.
 
 ## Licensing and attribution
 
